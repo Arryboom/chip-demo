@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/shiyu/pro/php/chip"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "phith0n/chip": "dev-master"
+    }
+}
