@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe6f6ea4ecbee51eb4efdbfd7ba92f32",
+    "content-hash": "0d041726dcb1b617ad127b33290473ee",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -241,8 +241,8 @@
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "/Users/shiyu/pro/php/chip",
-                "reference": "3181295856bb9d5240aa03d24d1b1e8804f8fcae",
+                "url": "../chip",
+                "reference": "5d588d05081a0d8f273d85ced3aa53ea099564a0",
                 "shasum": null
             },
             "require": {

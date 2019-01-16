@@ -2,7 +2,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "/Users/shiyu/pro/php/chip"
+            "url": "../chip"
         }
     ],
     "require": {

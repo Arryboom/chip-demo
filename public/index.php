@@ -18,10 +18,9 @@ $app->post('/api/detect', function (Request $request,  Response $response, $args
 
     if (!empty($parsedBody['code'])) {
         $alarms = $this->get('chip')->detect($parsedBody['code']);
-        var_dump($alarms);
     }
 
-    // return $response->withStatus(200)->write('hello, world');
+    return $response->withJson((array)$alarms);
 });
 
 $app->run();
