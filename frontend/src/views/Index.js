@@ -41,14 +41,18 @@ class Index extends Component {
                     </Col>
                 </Row>
 
-                <Card
-                    size="small"
-                    title="类型：Include_"
-                    className="alarm-card"
-                    type={"inner"}
-                >
-                    命令执行漏洞
-                </Card>
+                {this.props.alarms.map(alarm => {
+                    return (
+                        <Card
+                            size="small"
+                            title={`类型：${alarm.type}`}
+                            className="alarm-card"
+                            type="inner"
+                        >
+                            {alarm.message}
+                        </Card>
+                    )
+                })}
             </Fragment>
         )
     }
@@ -56,7 +60,8 @@ class Index extends Component {
 
 const mapStateToProps = state => {
     return {
-        code: state.code
+        code: state.code,
+        alarms: state.alarms
     }
 }
 const mapDispatchToProps = dispatch => {

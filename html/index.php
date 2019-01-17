@@ -13,14 +13,22 @@ $container['chip'] = function ($container) {
     return $chipManager;
 };
 
+$app->get('/', function (Request $request, Response $response) {
+    $content = file_get_contents(__DIR__ . '/../frontend/build/index.html');
+    return $response->write($content);
+});
+
 $app->post('/api/detect', function (Request $request,  Response $response, $args = []) {
     $parsedBody = $request->getParsedBody();
+    $data = ['alarms' => []];
 
-    if (!empty($parsedBody['code'])) {
-        $alarms = $this->get('chip')->detect($parsedBody['code']);
-    }
+    try {
+        if (!empty($parsedBody['code'])) {
+            $data['alarms'] = (array)$this->get('chip')->detect($parsedBody['code']);
+        }
+    } catch (Exception $e) {}
 
-    return $response->withJson((array)$alarms);
+    return $response->withJson($data);
 });
 
 $app->run();
