@@ -8,7 +8,7 @@ Resources:
      Properties:
        Handler: index.handler
        Runtime: php7.2
-       CodeUri: './'
+       CodeUri: './backend/'
      Events:
        chip-code:
          Type: HTTP
