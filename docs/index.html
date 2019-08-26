@@ -161,7 +161,36 @@ try <span style="color: #009900;">&#123;</span>
             maxFiles: 1,
             instantUpload: false,
             labelIdle: "拖动或点击<span class=\"filepond--label-action\">浏览</span>选择待扫描的文件",
-            server: "/upload",
+            server: {
+                process: function(fieldName, file, metadata, load, error, progress, abort) {
+                    const request = new XMLHttpRequest();
+                    request.open('POST', 'https://api.phpchip.com/upload');
+                    request.upload.onprogress = (e) => {
+                        progress(e.lengthComputable, e.loaded, e.total);
+                    };
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 300) {
+                            // the load method accepts either a string (id) or an object
+                            load(request.responseText);
+                        }
+                        else {
+                            error('something error');
+                        }
+                    };
+
+                    file.text().then(function (data) {
+                        request.send(data);
+                    })
+
+                    // Should expose an abort method so the request can be cancelled
+                    return {
+                        abort: () => {
+                            // This function is entered if the user has tapped the cancel button
+                            request.abort();
+                        }
+                    };
+                }
+            },
             allowFileSizeValidation: true,
             maxFileSize: "16KB",
             onprocessfile: function (err, file) {
