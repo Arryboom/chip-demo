@@ -170,7 +170,6 @@ try <span style="color: #009900;">&#123;</span>
                     };
                     request.onload = function() {
                         if (request.status >= 200 && request.status < 300) {
-                            // the load method accepts either a string (id) or an object
                             load(request.responseText);
                         }
                         else {
@@ -182,10 +181,8 @@ try <span style="color: #009900;">&#123;</span>
                         request.send(data);
                     })
 
-                    // Should expose an abort method so the request can be cancelled
                     return {
                         abort: () => {
-                            // This function is entered if the user has tapped the cancel button
                             request.abort();
                         }
                     };
